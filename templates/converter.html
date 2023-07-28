@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Currency and Crypto Converter{% endblock %}
+
+{% block content %}
+
+
+
+    <h1>Currency Converter</h1>
+    <form action="/" method="POST">
+        <label for="from_currency">Convert from:</label>
+        <select id="from_currency" name="from_currency">
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <!-- Add more currency options here -->
+        </select>
+
+        <label for="to_currency">Convert to:</label>
+        <select id="to_currency" name="to_currency">
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <!-- Add more currency options here -->
+        </select>
+
+        <label for="amount">Amount:</label>
+        <input type="number" id="amount" name="amount" step="any" required>
+
+        <input type="submit" value="Convert">
+    </form>
+
+    {% endblock %}
+
+    <!-- <a href="/questions/0"><button>Start Survey</button></a> -->
