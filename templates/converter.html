@@ -4,30 +4,35 @@
 
 {% block content %}
 
+<h1>Currency Converter</h1>
+<form action="/" method="POST">
+    <label for="from_currency">Convert from:</label>
+    <input type="text" id="from_currency_input" name="from_currency" list="from_currency_list" placeholder="Type or select currency" required>
+    <datalist id="from_currency_list">
+        {% for currency in currencies %}
+        <option value="{{ currency }}">{{ currency }}</option>
+        {% endfor %}
+    </datalist>
 
+    <label for="to_currency">Convert to:</label>
+    <input type="text" id="to_currency_input" name="to_currency" list="to_currency_list" placeholder="Type or select currency" required>
+    <datalist id="to_currency_list">
+        {% for currency in currencies %}
+        <option value="{{ currency }}">{{ currency }}</option>
+        {% endfor %}
+    </datalist>
 
-    <h1>Currency Converter</h1>
-    <form action="/" method="POST">
-        <label for="from_currency">Convert from:</label>
-        <select id="from_currency" name="from_currency">
-            <option value="USD">USD</option>
-            <option value="EUR">EUR</option>
-            <!-- Add more currency options here -->
-        </select>
+    <label for="amount">Amount:</label>
+    <input type="number" id="amount" name="amount" step="any" required>
 
-        <label for="to_currency">Convert to:</label>
-        <select id="to_currency" name="to_currency">
-            <option value="USD">USD</option>
-            <option value="EUR">EUR</option>
-            <!-- Add more currency options here -->
-        </select>
+    <input type="submit" value="Convert">
+</form>
 
-        <label for="amount">Amount:</label>
-        <input type="number" id="amount" name="amount" step="any" required>
+{% if from_currency and to_currency and amount and converted_amount %}
+    <div class="result">
+        <p>{{ amount }} {{ from_currency }} = {{ converted_amount }} {{ to_currency }}</p>
+    </div>
+{% endif %}
 
-        <input type="submit" value="Convert">
-    </form>
 
     {% endblock %}
-
-    <!-- <a href="/questions/0"><button>Start Survey</button></a> -->
