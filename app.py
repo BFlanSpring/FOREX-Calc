@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session
-from currency import get_spot_rate, convert
+from currency import get_spot_rate, convert, available_currencies
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "secret"
@@ -18,3 +18,9 @@ def home():
         return f"{amount:.2f} {from_currency} = {converted_amount:.2f} {to_currency}"
 
     return render_template('converter.html')
+
+@app.route('/currencies')
+def currency_list():
+    currencies = available_currencies()
+    if currencies:
+        print(currencies)
