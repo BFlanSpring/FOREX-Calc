@@ -13,6 +13,10 @@ def home():
         from_currency = request.form['from_currency']
         to_currency = request.form['to_currency']
         amount = float(request.form['amount'])
+        
+        if from_currency not in currencies or to_currency not in currencies:
+            flash("Invalid currency selected. Please choose valid currencies.", 'error')
+            return render_template('converter.html', currencies=currencies)
 
         exchange_rate = get_spot_rate(from_currency, to_currency)
         converted_amount = convert(amount, exchange_rate)
